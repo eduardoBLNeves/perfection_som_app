@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:perfection_som/widgets/color_palette.dart';
-import 'package:perfection_som/widgets/favorite_colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:perfection_som/pages/bluetooth_page.dart';
+import 'package:perfection_som/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,21 +19,19 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 0, 0)),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Home Page'),
+      home: const MainWidget(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-  final String title;
+class MainWidget extends StatefulWidget {
+  const MainWidget({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainWidget> createState() => _MainWidgetState();
 }
 
-class _HomePageState extends State<HomePage> {
-  Color selectedColor = Colors.red;
+class _MainWidgetState extends State<MainWidget> {
   int currentPageIndex = 0;
 
   @override
@@ -53,61 +48,24 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: Color.fromARGB(255, 39, 39, 39),
       ),
-      body: Container(
-        height: double.infinity,
-        // color: Color.fromARGB(255, 228, 238, 255),
-        color: Color.fromARGB(255, 185, 185, 185),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ClipRect(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        heightFactor: 0.85,
-                        child: ColorPicker(
-                          pickerColor: selectedColor,
-                          paletteType: PaletteType.hueWheel,
-                          colorPickerWidth: 380,
-                          onColorChanged: (Color value) {
-                            updateColor(value);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              ColorPaletteWidget(
-                onUpdateColor: updateColor,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              FavoriteColorsWidget(
-                onSaveFavorite: addItemsToLocalStorage,
-                onClickUpdateColor: updateColor,
-              ),
-            ],
-          ),
-        ),
+      body: IndexedStack(
+        index: currentPageIndex,
+        children: const [
+          HomePage(),
+          BluetoothPage(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black, // <-- This works for fixed
         selectedItemColor: Color.fromARGB(255, 255, 126, 52),
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
+        currentIndex: currentPageIndex,
+        onTap: (index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -120,19 +78,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  void updateColor(Color color) {
-    setState(() {
-      selectedColor = color;
-      //send bluetooth
-    });
-  }
-
-  addItemsToLocalStorage(String key) async {
-    print(key);
-    final prefs = await SharedPreferences.getInstance();
-    String colorString = selectedColor.value.toRadixString(16);
-    await prefs.setString(key, colorString);
   }
 }
