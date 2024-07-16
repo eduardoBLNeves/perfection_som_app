@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:perfection_som/pages/bluetooth_page.dart';
 import 'package:perfection_som/pages/home_page.dart';
 
@@ -39,14 +40,18 @@ class _MainWidgetState extends State<MainWidget> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        shadowColor: Color.fromARGB(255, 244, 137, 14),
-        title: const Text(
-          'Perfection Som',
-          style: TextStyle(
-            color: Color.fromARGB(255, 255, 119, 40),
+        shadowColor: const Color.fromARGB(255, 244, 137, 14),
+        title: Center(
+          child: const Text(
+            'Perfection Som',
+            style: TextStyle(
+              fontFamily: "aAnotherTag",
+              fontSize: 34,
+              color: Color.fromARGB(255, 255, 119, 40),
+            ),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 39, 39, 39),
+        backgroundColor: const Color.fromARGB(255, 39, 39, 39),
       ),
       body: IndexedStack(
         index: currentPageIndex,
@@ -56,8 +61,8 @@ class _MainWidgetState extends State<MainWidget> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black, // <-- This works for fixed
-        selectedItemColor: Color.fromARGB(255, 255, 126, 52),
+        backgroundColor: Colors.black,
+        selectedItemColor: const Color.fromARGB(255, 255, 126, 52),
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
         currentIndex: currentPageIndex,

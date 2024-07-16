@@ -10,6 +10,27 @@ class BluetoothPage extends StatefulWidget {
 class _BluetoothPageState extends State<BluetoothPage> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Bluetooth page");
+    return Container(
+      height: double.infinity,
+      color: const Color.fromARGB(255, 185, 185, 185),
+      child: const SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

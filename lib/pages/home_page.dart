@@ -18,8 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      // color: Color.fromARGB(255, 228, 238, 255),
-      color: Color.fromARGB(255, 185, 185, 185),
+      color: const Color.fromARGB(255, 185, 185, 185),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -32,17 +31,35 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Expanded(
-                  child: ClipRect(
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      heightFactor: 0.85,
-                      child: ColorPicker(
-                        pickerColor: selectedColor,
-                        paletteType: PaletteType.hueWheel,
-                        colorPickerWidth: 380,
-                        onColorChanged: (Color value) {
-                          updateColor(value);
-                        },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(100000),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: selectedColor.withOpacity(0.5),
+                          spreadRadius: -50,
+                          blurRadius: 5,
+                          offset: const Offset(
+                            0,
+                            -45,
+                          ),
+                        ),
+                      ],
+                    ),
+                    child: ClipRect(
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        heightFactor: 0.85,
+                        child: ColorPicker(
+                          pickerColor: selectedColor,
+                          paletteType: PaletteType.hueWheel,
+                          colorPickerWidth: 320,
+                          onColorChanged: (Color value) {
+                            updateColor(value);
+                          },
+                        ),
                       ),
                     ),
                   ),
