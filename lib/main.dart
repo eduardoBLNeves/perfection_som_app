@@ -37,7 +37,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Color selectedColor = Colors.red;
-  double _opacity = 1;
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +48,15 @@ class _HomePageState extends State<HomePage> {
         title: const Text(
           'Perfection Som',
           style: TextStyle(
-            color: Colors.white,
+            color: Color.fromARGB(255, 255, 119, 40),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 25, 25, 25),
+        backgroundColor: Color.fromARGB(255, 39, 39, 39),
       ),
       body: Container(
         height: double.infinity,
-        color: Color.fromARGB(255, 228, 238, 255),
+        // color: Color.fromARGB(255, 228, 238, 255),
+        color: Color.fromARGB(255, 185, 185, 185),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -96,10 +97,27 @@ class _HomePageState extends State<HomePage> {
               ),
               FavoriteColorsWidget(
                 onSaveFavorite: addItemsToLocalStorage,
+                onClickUpdateColor: updateColor,
               ),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black, // <-- This works for fixed
+        selectedItemColor: Color.fromARGB(255, 255, 126, 52),
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bluetooth),
+            label: 'Bluetooth',
+          ),
+        ],
       ),
     );
   }
@@ -107,6 +125,7 @@ class _HomePageState extends State<HomePage> {
   void updateColor(Color color) {
     setState(() {
       selectedColor = color;
+      //send bluetooth
     });
   }
 
