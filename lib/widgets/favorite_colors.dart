@@ -29,11 +29,16 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
+        const SizedBox(
+          width: 20,
+        ),
         //FIRST-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
               style: ButtonStyle(
@@ -41,7 +46,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 shadowColor: WidgetStateProperty.all<Color>(Colors.black),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -57,7 +62,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                   ? const Icon(
                       Icons.add,
                       color: Colors.black,
-                      size: 24.0,
+                      size: 18,
                     )
                   : const Icon(null),
             ),
@@ -69,9 +74,11 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
 
         //SECOND-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
               style: ButtonStyle(
@@ -79,7 +86,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 shadowColor: WidgetStateProperty.all<Color>(Colors.black),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -95,7 +102,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                   ? const Icon(
                       Icons.add,
                       color: Colors.black,
-                      size: 24.0,
+                      size: 18,
                     )
                   : const Icon(null),
             ),
@@ -107,9 +114,11 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
 
         //THIRD-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
               style: ButtonStyle(
@@ -117,7 +126,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 shadowColor: WidgetStateProperty.all<Color>(Colors.black),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -133,7 +142,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                   ? const Icon(
                       Icons.add,
                       color: Colors.black,
-                      size: 24.0,
+                      size: 18,
                     )
                   : const Icon(null),
             ),
@@ -145,9 +154,11 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
 
         //FOURTH-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
               style: ButtonStyle(
@@ -155,7 +166,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 shadowColor: WidgetStateProperty.all<Color>(Colors.black),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -171,7 +182,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                   ? const Icon(
                       Icons.add,
                       color: Colors.black,
-                      size: 24.0,
+                      size: 18,
                     )
                   : const Icon(null),
             ),
@@ -183,9 +194,11 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
 
         //FIFTH-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
               style: ButtonStyle(
@@ -193,7 +206,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 shadowColor: WidgetStateProperty.all<Color>(Colors.black),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
@@ -209,7 +222,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                   ? const Icon(
                       Icons.add,
                       color: Colors.black,
-                      size: 24.0,
+                      size: 18,
                     )
                   : const Icon(null),
             ),
@@ -217,6 +230,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
               await deleteItem("fifth");
             },
           ),
+        ),
+        const SizedBox(
+          width: 20,
         ),
       ],
     );

@@ -41,8 +41,8 @@ class _MainWidgetState extends State<MainWidget> {
       appBar: AppBar(
         elevation: 2,
         shadowColor: const Color.fromARGB(255, 244, 137, 14),
-        title: Center(
-          child: const Text(
+        title: const Center(
+          child: Text(
             'Perfection Som',
             style: TextStyle(
               fontFamily: "aAnotherTag",

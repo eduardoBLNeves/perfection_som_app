@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class BluetoothPage extends StatefulWidget {
   const BluetoothPage({super.key});
@@ -8,12 +9,14 @@ class BluetoothPage extends StatefulWidget {
 }
 
 class _BluetoothPageState extends State<BluetoothPage> {
+  Color currentColor = Color(0xff443a49);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       color: const Color.fromARGB(255, 185, 185, 185),
-      child: const SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
@@ -32,5 +35,11 @@ class _BluetoothPageState extends State<BluetoothPage> {
         ),
       ),
     );
+  }
+
+  void updateColor(Color color) {
+    setState(() {
+      currentColor = color;
+    });
   }
 }

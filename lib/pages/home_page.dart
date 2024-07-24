@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:perfection_som/widgets/color_palette.dart';
 import 'package:perfection_som/widgets/favorite_colors.dart';
+import 'package:perfection_som/widgets/slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,18 +14,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Color selectedColor = Colors.red;
+  Color colorToSend = Colors.red;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      color: const Color.fromARGB(255, 185, 185, 185),
+      color: Colors.grey.withOpacity(0.5),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
-            ),
             const SizedBox(
               height: 20,
             ),
@@ -33,29 +32,19 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(100000),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: selectedColor.withOpacity(0.5),
-                          spreadRadius: -50,
-                          blurRadius: 5,
-                          offset: const Offset(
-                            0,
-                            -45,
-                          ),
+                        border: Border.all(
+                          width: 20,
+                          color: colorToSend,
                         ),
-                      ],
-                    ),
+                        shape: BoxShape.circle),
                     child: ClipRect(
                       child: Align(
                         alignment: Alignment.topCenter,
-                        heightFactor: 0.85,
+                        heightFactor: 0.62,
                         child: ColorPicker(
                           pickerColor: selectedColor,
                           paletteType: PaletteType.hueWheel,
-                          colorPickerWidth: 320,
+                          colorPickerWidth: 280,
                           onColorChanged: (Color value) {
                             updateColor(value);
                           },
@@ -67,13 +56,21 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const SizedBox(
-              height: 40,
+              height: 10,
+            ),
+            SliderPicker(
+              width: 280,
+              currentColor: selectedColor,
+              onClickUpdateColor: setColorToSend,
+            ),
+            const SizedBox(
+              height: 20,
             ),
             ColorPaletteWidget(
               onUpdateColor: updateColor,
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             FavoriteColorsWidget(
               onSaveFavorite: addItemsToLocalStorage,
@@ -88,8 +85,11 @@ class _HomePageState extends State<HomePage> {
   void updateColor(Color color) {
     setState(() {
       selectedColor = color;
-      //send bluetooth
     });
+  }
+
+  void setColorToSend(Color color) {
+    colorToSend = color;
   }
 
   addItemsToLocalStorage(String key) async {

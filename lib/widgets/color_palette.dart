@@ -10,18 +10,23 @@ class ColorPaletteWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
+        const SizedBox(
+          width: 20,
+        ),
         //FIRST-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Colors.red),
               shadowColor: WidgetStateProperty.all<Color>(Colors.black),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
@@ -34,16 +39,18 @@ class ColorPaletteWidget extends StatelessWidget {
 
         //SECOND-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),
               shadowColor: WidgetStateProperty.all<Color>(Colors.black),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
@@ -56,16 +63,18 @@ class ColorPaletteWidget extends StatelessWidget {
 
         //THIRD-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Colors.purple),
               shadowColor: WidgetStateProperty.all<Color>(Colors.black),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
@@ -78,16 +87,18 @@ class ColorPaletteWidget extends StatelessWidget {
 
         //FOURTH-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Colors.green),
               shadowColor: WidgetStateProperty.all<Color>(Colors.black),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
@@ -100,16 +111,18 @@ class ColorPaletteWidget extends StatelessWidget {
 
         //FIFTH-----
         Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(border: Border.all()),
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Colors.yellow),
               shadowColor: WidgetStateProperty.all<Color>(Colors.black),
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
             ),
@@ -118,6 +131,9 @@ class ColorPaletteWidget extends StatelessWidget {
             },
             child: null,
           ),
+        ),
+        const SizedBox(
+          width: 20,
         ),
       ],
     );
