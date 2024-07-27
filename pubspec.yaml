@@ -33,6 +33,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.0.11
   flutter_colorpicker: ^1.1.0
+  flutter_blue_plus: ^1.0.0
+  flutter_bluetooth_serial: ^0.3.2
+  path_provider: ^2.0.9
 
   
 dev_dependencies:

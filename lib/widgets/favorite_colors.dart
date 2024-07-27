@@ -288,6 +288,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
   deleteItem(String key) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(key);
+    await prefs.remove(key + "_pos");
     await getItems();
   }
 }

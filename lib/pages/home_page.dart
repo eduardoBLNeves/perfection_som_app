@@ -13,8 +13,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Color selectedColor = Colors.red;
+  Color selectedColorPicker = Colors.red;
   Color colorToSend = Colors.red;
+  Color colorForSlideBar = Colors.red;
+  double sliderPosition = 0;
+  double sliderWidth = 280;
+  bool isCustomColor = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         border: Border.all(
                           width: 20,
-                          color: colorToSend,
+                          color: isCustomColor ? colorToSend : colorForSlideBar,
                         ),
                         shape: BoxShape.circle),
                     child: ClipRect(
@@ -42,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.topCenter,
                         heightFactor: 0.62,
                         child: ColorPicker(
-                          pickerColor: selectedColor,
+                          pickerColor: selectedColorPicker,
                           paletteType: PaletteType.hueWheel,
                           colorPickerWidth: 280,
                           onColorChanged: (Color value) {
@@ -59,22 +68,24 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             SliderPicker(
-              width: 280,
-              currentColor: selectedColor,
+              width: sliderWidth,
+              currentColor: colorForSlideBar,
+              sliderPosition: sliderPosition,
               onClickUpdateColor: setColorToSend,
+              onUpdateSlider: setSlider,
             ),
             const SizedBox(
               height: 20,
             ),
             ColorPaletteWidget(
-              onUpdateColor: updateColor,
+              onUpdateColor: updateBySettedColor,
             ),
             const SizedBox(
               height: 10,
             ),
             FavoriteColorsWidget(
               onSaveFavorite: addItemsToLocalStorage,
-              onClickUpdateColor: updateColor,
+              onClickUpdateColor: updateBySettedColor,
             ),
           ],
         ),
@@ -84,18 +95,58 @@ class _HomePageState extends State<HomePage> {
 
   void updateColor(Color color) {
     setState(() {
-      selectedColor = color;
+      isCustomColor = true;
+      selectedColorPicker = color;
+      colorForSlideBar = color;
+      sliderPosition = double.minPositive;
     });
   }
 
+  Future<void> updateBySettedColor(Color color) async {
+    setState(() {
+      isCustomColor = false;
+      selectedColorPicker = setColorBright(color);
+      colorForSlideBar = color;
+      sliderPosition = _calculatePositionFromColor(color);
+      setColorToSend(color);
+    });
+  }
+
+  double _calculatePositionFromColor(Color color) {
+    var pos = sliderWidth * color.computeLuminance();
+    return pos;
+  }
+
   void setColorToSend(Color color) {
-    colorToSend = color;
+    if (color == colorToSend) return;
+    setState(() {
+      colorToSend = color;
+    });
+    sendToBluethoot();
+  }
+
+  void sendToBluethoot() {
+    print("------- Enviando Bluetooth ------");
+  }
+
+  Color setColorBright(Color color) {
+    if (color.red > color.blue && color.red > color.green)
+      color = color.withRed(255);
+    else if (color.blue > color.red && color.blue > color.green)
+      color = color.withBlue(255);
+    else if (color.green > color.blue && color.green > color.red)
+      color = color.withGreen(255);
+    return color;
+  }
+
+  void setSlider(double position) {
+    isCustomColor = true;
+    sliderPosition = position;
   }
 
   addItemsToLocalStorage(String key) async {
-    print(key);
     final prefs = await SharedPreferences.getInstance();
-    String colorString = selectedColor.value.toRadixString(16);
+    String colorString = colorForSlideBar.value.toRadixString(16);
     await prefs.setString(key, colorString);
   }
 }

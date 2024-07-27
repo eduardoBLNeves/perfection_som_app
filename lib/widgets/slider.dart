@@ -20,11 +20,15 @@ class SliderPicker extends StatefulWidget {
     required this.width,
     super.key,
     required this.currentColor,
+    required this.onUpdateSlider,
     required this.onClickUpdateColor,
+    required this.sliderPosition,
   });
 
   final Function(Color) onClickUpdateColor;
+  final Function(double) onUpdateSlider;
   final double width;
+  final double sliderPosition;
   final Color currentColor;
 
   @override
@@ -50,17 +54,19 @@ class _SliderPickerState extends State<SliderPicker> {
   @override
   void didUpdateWidget(SliderPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.currentColor != oldWidget.currentColor) {
-      setState(() {
-        _currentColor = widget.currentColor;
-        _shadedColor = _calculateShadedColor(_shadeSliderPosition);
-      });
-    }
-    widget.onClickUpdateColor(_shadedColor);
+
+    double position = widget.sliderPosition == double.minPositive
+        ? _shadeSliderPosition
+        : widget.sliderPosition;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _currentColor = widget.currentColor;
+      _shadeSliderPosition = position;
+      _shadedColor = _calculateShadedColor(_shadeSliderPosition);
+      widget.onClickUpdateColor(_shadedColor);
+    });
   }
 
   _colorChangeHandler(double position) {
-    //handle out of bounds positions
     if (position > widget.width) {
       position = widget.width;
     }
@@ -75,7 +81,6 @@ class _SliderPickerState extends State<SliderPicker> {
   }
 
   _shadeChangeHandler(double position) {
-    //handle out of bounds gestures
     if (position > widget.width) position = widget.width;
     if (position < 0) position = 0;
     setState(() {
@@ -83,25 +88,26 @@ class _SliderPickerState extends State<SliderPicker> {
       _shadedColor = _calculateShadedColor(_shadeSliderPosition);
     });
     widget.onClickUpdateColor(_shadedColor);
+    widget.onUpdateSlider(position);
   }
 
   Color _calculateShadedColor(double position) {
     double ratio = position / widget.width;
     Color response = Colors.black;
-
+    int redVal = 255, greenVal = 255, blueVal = 255;
     if (ratio > 0.5) {
       //Calculate new color (values converge to 255 to make the color lighter)
-      int redVal = _currentColor.red != 255
+      redVal = _currentColor.red != 255
           ? (_currentColor.red +
                   (255 - _currentColor.red) * (ratio - 0.5) / 0.5)
               .round()
           : 255;
-      int greenVal = _currentColor.green != 255
+      greenVal = _currentColor.green != 255
           ? (_currentColor.green +
                   (255 - _currentColor.green) * (ratio - 0.5) / 0.5)
               .round()
           : 255;
-      int blueVal = _currentColor.blue != 255
+      blueVal = _currentColor.blue != 255
           ? (_currentColor.blue +
                   (255 - _currentColor.blue) * (ratio - 0.5) / 0.5)
               .round()
@@ -109,21 +115,19 @@ class _SliderPickerState extends State<SliderPicker> {
       response = Color.fromARGB(255, redVal, greenVal, blueVal);
     } else if (ratio < 0.5) {
       //Calculate new color (values converge to 0 to make the color darker)
-      int redVal = _currentColor.red != 0
+      redVal = _currentColor.red != 0
           ? (_currentColor.red * ratio / 0.5).round()
           : 0;
-      int greenVal = _currentColor.green != 0
+      greenVal = _currentColor.green != 0
           ? (_currentColor.green * ratio / 0.5).round()
           : 0;
-      int blueVal = _currentColor.blue != 0
+      blueVal = _currentColor.blue != 0
           ? (_currentColor.blue * ratio / 0.5).round()
           : 0;
       response = Color.fromARGB(255, redVal, greenVal, blueVal);
     } else {
-      //return the base color
       response = _currentColor;
     }
-
     return response;
   }
 
