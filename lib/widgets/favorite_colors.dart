@@ -8,10 +8,12 @@ class FavoriteColorsWidget extends StatefulWidget {
     super.key,
     required this.onSaveFavorite,
     required this.onClickUpdateColor,
+    required this.borderAndIconColor,
   });
 
   final Function(String) onSaveFavorite;
   final Function(Color) onClickUpdateColor;
+  final Color borderAndIconColor;
 
   @override
   State<FavoriteColorsWidget> createState() => _FavoriteColorsWidgetState();
@@ -37,7 +39,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: widget.borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
@@ -59,9 +61,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 }
               },
               icon: _first == Colors.transparent
-                  ? const Icon(
+                  ? Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: widget.borderAndIconColor,
                       size: 18,
                     )
                   : const Icon(null),
@@ -77,7 +79,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: widget.borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
@@ -99,9 +101,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 }
               },
               icon: _second == Colors.transparent
-                  ? const Icon(
+                  ? Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: widget.borderAndIconColor,
                       size: 18,
                     )
                   : const Icon(null),
@@ -117,7 +119,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: widget.borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
@@ -139,9 +141,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 }
               },
               icon: _third == Colors.transparent
-                  ? const Icon(
+                  ? Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: widget.borderAndIconColor,
                       size: 18,
                     )
                   : const Icon(null),
@@ -157,7 +159,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: widget.borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
@@ -179,9 +181,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 }
               },
               icon: _fourth == Colors.transparent
-                  ? const Icon(
+                  ? Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: widget.borderAndIconColor,
                       size: 18,
                     )
                   : const Icon(null),
@@ -197,7 +199,7 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: widget.borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: GestureDetector(
             child: IconButton(
@@ -219,9 +221,9 @@ class _FavoriteColorsWidgetState extends State<FavoriteColorsWidget> {
                 }
               },
               icon: _fifth == Colors.transparent
-                  ? const Icon(
+                  ? Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: widget.borderAndIconColor,
                       size: 18,
                     )
                   : const Icon(null),

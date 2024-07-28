@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ColorPaletteWidget extends StatelessWidget {
-  const ColorPaletteWidget({super.key, required this.onUpdateColor});
+  const ColorPaletteWidget({
+    super.key,
+    required this.onUpdateColor,
+    required this.borderAndIconColor,
+  });
 
   final Function(Color) onUpdateColor;
+  final Color borderAndIconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class ColorPaletteWidget extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
@@ -42,7 +47,7 @@ class ColorPaletteWidget extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
@@ -66,7 +71,7 @@ class ColorPaletteWidget extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
@@ -90,7 +95,7 @@ class ColorPaletteWidget extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(
@@ -114,7 +119,7 @@ class ColorPaletteWidget extends StatelessWidget {
           width: 35,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: borderAndIconColor),
               borderRadius: const BorderRadius.all(Radius.circular(5))),
           child: ElevatedButton(
             style: ButtonStyle(

@@ -40,7 +40,7 @@ class _MainWidgetState extends State<MainWidget> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        shadowColor: const Color.fromARGB(255, 244, 137, 14),
+        shadowColor: const Color.fromARGB(255, 9, 40, 55),
         title: const Center(
           child: Text(
             'Perfection Som',
@@ -51,7 +51,7 @@ class _MainWidgetState extends State<MainWidget> {
             ),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 39, 39, 39),
+        backgroundColor: const Color.fromARGB(255, 5, 23, 32),
       ),
       body: IndexedStack(
         index: currentPageIndex,

@@ -17,8 +17,9 @@ class _HomePageState extends State<HomePage> {
   Color colorToSend = Colors.red;
   Color colorForSlideBar = Colors.red;
   double sliderPosition = 0;
-  double sliderWidth = 280;
+  double sliderWidth = 225; //280;
   bool isCustomColor = false;
+  Color borderAndIconColor = const Color.fromARGB(255, 216, 216, 216);
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      color: Colors.grey.withOpacity(0.5),
+      color: Color.fromARGB(255, 11, 54, 78),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -67,18 +68,40 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            SliderPicker(
-              width: sliderWidth,
-              currentColor: colorForSlideBar,
-              sliderPosition: sliderPosition,
-              onClickUpdateColor: setColorToSend,
-              onUpdateSlider: setSlider,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(
+                  width: 25,
+                ),
+                Icon(
+                  Icons.light_mode,
+                  size: 24,
+                  color: borderAndIconColor,
+                ),
+                SliderPicker(
+                  width: sliderWidth,
+                  currentColor: colorForSlideBar,
+                  sliderPosition: sliderPosition,
+                  onClickUpdateColor: setColorToSend,
+                  onUpdateSlider: setSlider,
+                ),
+                Icon(
+                  Icons.light_mode_outlined,
+                  size: 24,
+                  color: borderAndIconColor,
+                ),
+                const SizedBox(
+                  width: 25,
+                ),
+              ],
             ),
             const SizedBox(
               height: 20,
             ),
             ColorPaletteWidget(
               onUpdateColor: updateBySettedColor,
+              borderAndIconColor: borderAndIconColor,
             ),
             const SizedBox(
               height: 10,
@@ -86,6 +109,7 @@ class _HomePageState extends State<HomePage> {
             FavoriteColorsWidget(
               onSaveFavorite: addItemsToLocalStorage,
               onClickUpdateColor: updateBySettedColor,
+              borderAndIconColor: borderAndIconColor,
             ),
           ],
         ),
