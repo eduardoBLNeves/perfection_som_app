@@ -38,8 +38,8 @@ class SliderPicker extends StatefulWidget {
 class _SliderPickerState extends State<SliderPicker> {
   double _colorSliderPosition = 0;
   double _shadeSliderPosition = 0;
-  Color _currentColor = Colors.black;
-  Color _shadedColor = Colors.black;
+  Color _currentColor = Colors.red;
+  Color _shadedColor = Colors.red;
 
   _SliderPickerState();
 

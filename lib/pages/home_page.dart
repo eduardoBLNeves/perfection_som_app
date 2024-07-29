@@ -170,7 +170,9 @@ class _HomePageState extends State<HomePage> {
 
   addItemsToLocalStorage(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    String colorString = colorForSlideBar.value.toRadixString(16);
+    String colorString =
+        (isCustomColor ? colorToSend.value : colorForSlideBar.value)
+            .toRadixString(16);
     await prefs.setString(key, colorString);
   }
 }
