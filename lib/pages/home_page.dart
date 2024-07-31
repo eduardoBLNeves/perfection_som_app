@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   Color selectedColorPicker = Colors.red;
   Color colorToSend = Colors.red;
   Color colorForSlideBar = Colors.red;
-  double sliderPosition = 0;
-  double sliderWidth = 225; //280;
+  double sliderWidth = 225;
+  double sliderPosition = 112; //<--- (sliderWidth / 2)
   bool isCustomColor = false;
   Color borderAndIconColor = const Color.fromARGB(255, 216, 216, 216);
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:perfection_som/pages/bluetooth_page.dart';
+import 'package:perfection_som/pages/info_page.dart';
 import 'package:perfection_som/pages/home_page.dart';
 import 'package:perfection_som/pages/mode_page.dart';
 
@@ -59,7 +58,7 @@ class _MainWidgetState extends State<MainWidget> {
         children: const [
           HomePage(),
           ModePage(),
-          BluetoothPage(),
+          InfoPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -75,16 +74,18 @@ class _MainWidgetState extends State<MainWidget> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_remote),
-            label: 'Modos',
+            label: 'Modo',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bluetooth),
-            label: 'Bluetooth',
+            icon: Icon(Icons.info),
+            label: 'Info',
           ),
         ],
       ),
